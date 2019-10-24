@@ -3,8 +3,8 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lht.dao.TopicDao.TopicDao">
-    <select id="topicSelect" resultType="Topic">
-        SELECT * FROM topic;
+<mapper namespace="com.lht.dao.LoginDao.LoginDao">
+    <select id="login" resultType="User">
+        SELECT * FROM user WHERE username=#{username} and password=#{password}
     </select>
 </mapper>
