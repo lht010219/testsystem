@@ -30,7 +30,7 @@
     <div class="cc"></div>
 </nav>
 <div class="container">
-    <button class="btn btn-info">常规测试</button>
+    <button class="btn btn-info" onclick="location.href='routine'">常规测试</button>
 </div>
 
 
