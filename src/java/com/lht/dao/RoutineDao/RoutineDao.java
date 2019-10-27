@@ -2,9 +2,11 @@ package com.lht.dao.RoutineDao;
 
 import com.lht.pojo.Topic;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RoutineDao {
     public List<Integer> routineTest1();
     public List<Integer> routineTest2();
