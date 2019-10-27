@@ -26,8 +26,7 @@
 <div class="box hidden-xs visible-lg hidden-sm visible-md" style="width: 250px; height: 200px; background:white; border-radius: 10px; box-shadow: 5px 5px 10px black; position: relative; top:100px; margin-left:-125px; left:50%;">
     <h3 style="line-height: 60px; text-align: center;">即将开始测试</h3>
     <p style="text-align: center;">
-        <% float num= (float) session.getAttribute("num"); %>
-        <%=num%>
+        100.0
     </p>
     <input type="button" value="回到首页" class=" btn btn-info" style="width: 70%; position:relative;left:50%; margin-left:-35%;"  >
 
@@ -35,7 +34,7 @@
 <div class="box1 hidden-md hidden-lg visible-sm visible-xs" style="top:70px;width: 90%; height:250px; position: relative; margin-left: -45%; left:50%;">
     <h3 style="line-height: 60px; text-align: center;">测试结果</h3>
     <p style="text-align: center;">
-        <%=num%>
+        100.0
     </p>
     <input type="button" value="回到首页" class=" btn btn-info" style="width: 70%; position:relative;left:50%; margin-left:-35%;"  >
 

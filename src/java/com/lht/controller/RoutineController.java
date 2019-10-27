@@ -24,12 +24,12 @@ public class RoutineController {
     @Autowired
     private RoutineService routineService;
 
-    int s=5;
-    int s_y=30;
-    int p=5;
-    int p_y=30;
-    int d=2;
-    int d_y=10;
+    int s=110;
+    int s_y=300;
+    int p=80;
+    int p_y=300;
+    int d=10;
+    int d_y=40;
     int sum=s+p+d;
 
     @RequestMapping("/routine_test")
@@ -41,15 +41,11 @@ public class RoutineController {
             response.sendRedirect(request.getContextPath()+"/index.jsp");
         }else {
             List<Topic> topicList1=create1();
-            System.out.println(topicList1);
             List<Topic> topicList2=create2();
-            System.out.println(topicList2);
             List<Topic> topicList3=create3();
-            System.out.println(topicList3);
             topicList.addAll(topicList1);
             topicList.addAll(topicList2);
             topicList.addAll(topicList3);
-            System.out.println(topicList);
             session.setAttribute("topicList",topicList);
             response.sendRedirect(request.getContextPath()+"/routine_start");
         }
@@ -59,7 +55,6 @@ public class RoutineController {
     public void routine_start(HttpServletResponse response,HttpServletRequest request,Model model) throws IOException {
         HttpSession session=request.getSession(true);
         Integer id= (Integer) session.getAttribute("id");
-        System.out.println(id);
         if(id==null){
             response.sendRedirect(request.getContextPath()+"/index.jsp");
         }else{
@@ -77,13 +72,10 @@ public class RoutineController {
         }else{
             List<Topic> topicList= (List<Topic>) session.getAttribute("topicList");
             Integer o= (Integer) session.getAttribute("o");
-            System.out.println("这题："+topicList.get(o));
             Topic topic=topicList.get(o);
-            System.out.println(topic);
             session.setAttribute("topic",topic);
             session.setAttribute("answer",topic.getAnswer());
             session.setAttribute("type",topic.type);
-            System.out.println("session中的题目"+topic);
             model.addAttribute("t",topic);
             model.addAttribute("o",o+1);
         }
@@ -92,7 +84,6 @@ public class RoutineController {
 
     @RequestMapping("/next_pc")
     public void next(String answer,String answer1,String answer2,String answer3,String answer4,HttpServletResponse response,HttpServletRequest request) throws IOException {
-        System.out.println(answer);
         HttpSession session=request.getSession(true);
         float num=100;
         Integer id= (Integer) session.getAttribute("id");
@@ -100,11 +91,8 @@ public class RoutineController {
             response.sendRedirect(request.getContextPath()+"/index.jsp");
         }
         Integer o= (Integer) session.getAttribute("o");
-        System.out.println("这里测试分数"+sum+":"+(o+1));
         int type= (int) session.getAttribute("type");
-        System.out.println("题目类型"+type);
         if(sum==(o+1)) {
-            System.out.println("num:"+num);
             response.sendRedirect(request.getContextPath() + "/num");
         }else if(type==3){
             String ans= (String) session.getAttribute("answer");
@@ -144,7 +132,6 @@ public class RoutineController {
                     }
                 }
             }
-            System.out.println(a);
             if(!ans.equals(a)){
                 num= (float) (num-0.5);
                 response.sendRedirect(request.getContextPath()+"/error");
@@ -173,7 +160,6 @@ public class RoutineController {
         }
         Topic topic= (Topic) session.getAttribute("topic");
         Integer o= (Integer) session.getAttribute("o");
-        System.out.println("错误题："+topic);
         model.addAttribute("t",topic);
         model.addAttribute("o",o+1);
         return "error";
@@ -189,7 +175,6 @@ public class RoutineController {
         List<Topic> topicList= (List<Topic>) session.getAttribute("topicList");
         Integer o= (Integer) session.getAttribute("o");
         session.setAttribute("o",o+1);
-        System.out.println(o+1);
         response.sendRedirect(request.getContextPath()+"/test");
     }
 
@@ -248,8 +233,6 @@ public class RoutineController {
             }else if(!arr1.contains(r1)){
                 Topic topics=routineService.routineList1(r1);
                 arr1.add(r1);
-                System.out.println(arr1);
-                System.out.println(topics);
                 topicList1.add(topics);
             }
         }
@@ -267,8 +250,6 @@ public class RoutineController {
             }else if(!arr2.contains(p1)){
                 Topic topics=routineService.routineList2(p1);
                 arr2.add(p1);
-                System.out.println(arr2);
-                System.out.println(topics);
                 topicList2.add(topics);
             }
         }
@@ -286,8 +267,6 @@ public class RoutineController {
             }else if(!arr3.contains(d1)){
                 Topic topics=routineService.routineList3(d1);
                 arr3.add(d1);
-                System.out.println(arr3);
-                System.out.println(topics);
                 topicList3.add(topics);
             }
         }
